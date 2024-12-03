@@ -15,14 +15,14 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'mvn clean package'
+                sh './mvnw clean package'
             }
         }
         stage('Docker Build & Push') {
             steps {
                 sh """
-                docker build -t springbootrest/${APP_NAME}:${IMAGE_TAG} .
-                docker push springbootrest/${APP_NAME}:${IMAGE_TAG}
+                docker build -t ${APP_NAME}:${IMAGE_TAG} .
+                docker push ${APP_NAME}:${IMAGE_TAG}
                 """
             }
         }
@@ -41,7 +41,7 @@ pipeline {
                 terraform plan \
                   -var "name=${APP_NAME}" \
                   -var "namespace=${NAMESPACE}" \
-                  -var "image=your-docker-repo/${APP_NAME}:${IMAGE_TAG}" \
+                  -var "image=${APP_NAME}:${IMAGE_TAG}" \
                   -var "chart=${CHART}" \
                   -var "chart_version=${CHART_VERSION}" \
                   -var "helm_repo_url=${HELM_REPO_URL}" \
