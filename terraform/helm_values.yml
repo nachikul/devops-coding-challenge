@@ -1,6 +1,6 @@
 replicaCount: 1
 image:
-  repository: "{image}"
+  repository: "${image}"
   tag: latest
   pullPolicy: IfNotPresent
 
