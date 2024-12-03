@@ -5,7 +5,9 @@ This guide covers the steps to install Minikube, Terraform, and Helm, configure 
 ---
 
 ## Prerequisites
+
 Ensure you have the following installed:
+
 - A supported hypervisor (e.g., VirtualBox, Hyper-V, Docker, etc.)
 - Kubernetes CLI (`kubectl`)
 - Curl or Wget for downloading installation scripts
@@ -15,11 +17,13 @@ Ensure you have the following installed:
 ## 1. Install Minikube
 
 ### Using Curl:
+
 bash
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 sudo install minikube-linux-amd64 /usr/local/bin/minikube ```
 
 ### Start Minikube
+
 minikube start --driver=docker/podman
 
 
@@ -30,15 +34,29 @@ echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://
 sudo apt update && sudo apt install terraform
 
 ### Install Helm
+
 curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 
 ### Build The Image
+
 docker build -t springbootrest:latest .
 
 ### Save the image
+
 docker save springbootrest:latest -o springbootrest.tar
 
 ### To solve the localhost repository error
+
 minikube image load springbootrest.tar
 
+### Deploying using Terraform
 
+cd terraform
+terraform init
+terraform plan -var name=springbootrest -var image=springbootrest -var kubeconfig_path=~/.kube/config
+terraform apply -var name=springbootrest -var image=springbootrest -var kubeconfig_path=~/.kube/config
+
+### Deploying using CI CD
+
+Option 1 - Run the Jenkinsfile using a local Jenkins server
+Option 2 - R
