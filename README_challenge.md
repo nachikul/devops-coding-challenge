@@ -62,6 +62,23 @@ terraform init
 terraform plan -var name=springbootrest -var image=springbootrest -var kubeconfig_path=~/.kube/config
 terraform apply -var name=springbootrest -var image=springbootrest -var kubeconfig_path=~/.kube/config
 
+## Testing
+kubectl port-forward svc/springbootrest 8080:8080
+
+curl http://127.0.0.1:8080/user\?id\=1
+
+Output -
+Greetings from Crewmeister, Alice!%
+
+curl http://127.0.0.1:8080/user -H "Content-Type: application/json" -d '{"name":"testuser"}'
+
+Output -
+Greetings from Crewmeister, testuser!%
+
+curl http://127.0.0.1:8080/user\?id\=2
+
+Output -
+Greetings from Crewmeister, testuser!%
 ### Deploying using CI CD
 
 Option 1 - Run the Jenkinsfile using a local Jenkins server
