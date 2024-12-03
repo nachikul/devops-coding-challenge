@@ -8,6 +8,7 @@ on:
 
 env:
   APP_NAME: "localhost/springbootrest"
+  IMAGE: "localhost/springbootrest"
   CHART_PATH: "./helm/springbootrest" # Relative path to the local Helm chart
 
 jobs:
@@ -37,8 +38,8 @@ jobs:
     - name: Docker Build & Load to Minikube
       run: |
         echo "Building Docker image and loading it into Minikube..."
-        docker build -t ${APP_NAME}:${{ github.event.inputs.IMAGE_TAG || 'latest' }} .
-        minikube image load ${APP_NAME}:${{ github.event.inputs.IMAGE_TAG || 'latest' }}
+        docker build -t ${IMAGE_NAME}:${{ github.event.inputs.IMAGE_TAG || 'latest' }} .
+        minikube image load ${IMAGE_NAME}:${{ github.event.inputs.IMAGE_TAG || 'latest' }}
 
     - name: Helm Uninstall (Optional Cleanup)
       run: |
@@ -62,7 +63,7 @@ jobs:
         cd terraform
         terraform plan \
           -var "name=${APP_NAME}" \
-          -var "image=${APP_NAME}:${{ github.event.inputs.IMAGE_TAG || 'latest' }}" \
+          -var "image=${IMAGE_NAME}:${{ github.event.inputs.IMAGE_TAG || 'latest' }}" \
           -var "kubeconfig_path=${KUBECONFIG_PATH}"
 
     - name: Terraform Apply
@@ -71,5 +72,5 @@ jobs:
         cd terraform
         terraform apply -auto-approve \
           -var "name=${APP_NAME}" \
-          -var "image=${APP_NAME}:${{ github.event.inputs.IMAGE_TAG || 'latest' }}" \
+          -var "image=${IMAGE_NAME}:${{ github.event.inputs.IMAGE_TAG || 'latest' }}" \
           -var "kubeconfig_path=${KUBECONFIG_PATH}"
