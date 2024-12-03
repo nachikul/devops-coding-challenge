@@ -49,6 +49,12 @@ docker save springbootrest:latest -o springbootrest.tar
 
 minikube image load springbootrest.tar
 
+### Run a local mysql server
+
+cd mysql-local-k8s
+docker/podman pull mysql:8.0
+bash deploy-mysql-k8s.sh
+
 ### Deploying using Terraform
 
 cd terraform
@@ -59,4 +65,4 @@ terraform apply -var name=springbootrest -var image=springbootrest -var kubeconf
 ### Deploying using CI CD
 
 Option 1 - Run the Jenkinsfile using a local Jenkins server
-Option 2 - R
+Option 2 - Run the Github actions ci-cd workflow
