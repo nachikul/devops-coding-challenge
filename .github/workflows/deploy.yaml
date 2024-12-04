@@ -55,6 +55,7 @@ jobs:
         echo "Building Docker image and loading it into Minikube..."
         docker build -t ${IMAGE_NAME}:${{ github.event.inputs.IMAGE_TAG || 'latest' }} .
         docker tag ${IMAGE_NAME}:${{ github.event.inputs.IMAGE_TAG || 'latest' }} ghcr.io/nachikul/${IMAGE_NAME}:${{ github.event.inputs.IMAGE_TAG || 'latest' }}
+        docker push ghcr.io/nachikul/${IMAGE_NAME}:${{ github.event.inputs.IMAGE_TAG || 'latest' }}
         minikube image load ${IMAGE_NAME}:${{ github.event.inputs.IMAGE_TAG || 'latest' }}
 
     - name: Run mysql deployment
