@@ -10,12 +10,11 @@ env:
   APP_NAME: "springbootrest"
   IMAGE_NAME: "ghcr.io/nachikul/springbootrest"
   CHART_PATH: "./helm/springbootrest" # Relative path to the local Helm chart
+  KUBECONFIG_PATH: "~/.kube/config"
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    env:
-      KUBECONFIG_PATH: "~/.kube/config"
 
     steps:
     - name: Checkout Code
