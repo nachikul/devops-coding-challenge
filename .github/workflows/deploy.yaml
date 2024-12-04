@@ -56,7 +56,7 @@ jobs:
     - name: Set docker daemon to point to minikube
       run: |
         echo "Setting up Docker daemon to point to Minikube..."
-        minikube ssh "docker login ghcr.io -u nachikul -p ${ACCESS_TOKEN}"
+        minikube ssh "docker login ghcr.io -u nachikul -p ${secrets.ACCESS_TOKEN}"
 
 
     - name: Docker Build & Load to Minikube
