@@ -73,6 +73,7 @@ jobs:
         docker images
         docker save ${APP_NAME}:latest -o ${APP_NAME}.tar
         minikube image load ${APP_NAME}.tar
+        minikube ssh "docker images"
 
     - name: Run mysql deployment
       run: |
