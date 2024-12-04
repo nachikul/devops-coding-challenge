@@ -3,6 +3,8 @@ image:
   repository: "${image}"
   tag: latest
   pullPolicy: IfNotPresent
+  pullSecrets:
+    - name: ghcr-secret
 
 service:
   type: ClusterIP
