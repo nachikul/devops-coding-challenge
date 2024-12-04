@@ -1,6 +1,6 @@
 # Use an official JDK 17 base image
 FROM openjdk:17-jdk-slim
-
+LABEL org.opencontainers.image.source https://github.com/nachikul/devops-coding-challenge
 # Set the working directory
 WORKDIR /app
 
