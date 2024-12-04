@@ -71,7 +71,7 @@ jobs:
         --docker-password=${{ secrets.ACCESS_TOKEN }} \
         --docker-email=nachikul1993@gmail.com
         docker images
-        docker save ${APP_NAME}:latest ${APP_NAME}.tar
+        docker save ${APP_NAME}:latest -o ${APP_NAME}.tar
         minikube load ${APP_NAME}.tar
 
     - name: Run mysql deployment
