@@ -39,8 +39,7 @@ jobs:
       with:
         minikube version: 'v1.34.0'
         kubernetes version: 'v1.31.1'
-    - name: Debug Secrets
-      run: echo "${{ secrets.ACCESS_TOKEN }}" | wc -c
+        driver: 'docker'
 
     - name: Set docker daemon to point to minikube
       run: |
