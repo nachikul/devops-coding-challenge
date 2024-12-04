@@ -40,6 +40,9 @@ jobs:
         minikube version: 'v1.34.0'
         kubernetes version: 'v1.31.1'
 
+    - name: Debug Secrets
+      run: echo "${{ secrets.ACCESS_TOKEN }}" | wc -c
+
     - name: Log in to GitHub Container Registry
       run: |
         echo "${{ secrets.ACCESS_TOKEN }}" | docker login ghcr.io -u nachikul --password-stdin
