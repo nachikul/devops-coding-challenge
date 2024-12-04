@@ -53,6 +53,12 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.ACCESS_TOKEN }}
 
+    - name: Set docker daemon to point to minikube
+      run: |
+        echo "Setting up Docker daemon to point to Minikube..."
+        minikube ssh "docker login <registry-url> -u nachikul -p ${ACCESS_TOKEN}"
+
+
     - name: Docker Build & Load to Minikube
       run: |
         echo "Building Docker image and loading it into Minikube..."
