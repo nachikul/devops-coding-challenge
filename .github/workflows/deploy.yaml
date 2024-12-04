@@ -72,7 +72,7 @@ jobs:
         --docker-email=nachikul1993@gmail.com
         docker images
         docker save ${APP_NAME}:latest -o ${APP_NAME}.tar
-        minikube load ${APP_NAME}.tar
+        minikube image load ${APP_NAME}.tar
 
     - name: Run mysql deployment
       run: |
