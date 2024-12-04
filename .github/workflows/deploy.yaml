@@ -86,3 +86,14 @@ jobs:
           -var "name=${APP_NAME}" \
           -var "image=${IMAGE_NAME}:${{ github.event.inputs.IMAGE_TAG || 'latest' }}" \
           -var "kubeconfig_path=${KUBECONFIG_PATH}"
+
+    - name: Port forward Springboot Service
+      run: |
+        echo "Port forwarding the Springboot service..."
+        kubectl port-forward svc/springbootrest 8080:8080 &
+
+    - name: Testing Curl Command
+      run: |
+        curl http://127.0.0.1:8080/user?id=1
+        curl http://127.0.0.1:8080/user -H "Content-Type: application/json" -d '{"name":"testuser"}'
+        curl http://127.0.0.1:8080/user?id=2
