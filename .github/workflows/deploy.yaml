@@ -75,7 +75,7 @@ jobs:
         cd terraform
         terraform plan \
           -var "name=${APP_NAME}" \
-          -var "image=${IMAGE_NAME} \
+          -var "image=${IMAGE_NAME}" \
           -var "kubeconfig_path=${KUBECONFIG_PATH}"
 
     - name: Terraform Apply
@@ -84,7 +84,7 @@ jobs:
         cd terraform
         timeout 30 terraform apply -auto-approve \
           -var "name=${APP_NAME}" \
-          -var "image=${IMAGE_NAME} \
+          -var "image=${IMAGE_NAME}" \
           -var "kubeconfig_path=${KUBECONFIG_PATH}" &
         sleep 30
 
