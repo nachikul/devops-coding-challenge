@@ -82,7 +82,7 @@ jobs:
       run: |
         echo "Applying Terraform changes..."
         cd terraform
-        terraform apply -auto-approve \
+        timeout 30 terraform apply -auto-approve \
           -var "name=${APP_NAME}" \
           -var "image=${IMAGE_NAME}:${{ github.event.inputs.IMAGE_TAG || 'latest' }}" \
           -var "kubeconfig_path=${KUBECONFIG_PATH}" &
