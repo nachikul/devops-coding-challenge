@@ -85,7 +85,12 @@ jobs:
         terraform apply -auto-approve \
           -var "name=${APP_NAME}" \
           -var "image=${IMAGE_NAME}:${{ github.event.inputs.IMAGE_TAG || 'latest' }}" \
-          -var "kubeconfig_path=${KUBECONFIG_PATH}"
+          -var "kubeconfig_path=${KUBECONFIG_PATH}" &
+        sleep 30
+
+    - name: Check pod deployment
+      run: |
+        kubectl get pods
 
     - name: Port forward Springboot Service
       run: |
