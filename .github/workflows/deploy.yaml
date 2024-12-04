@@ -8,7 +8,7 @@ on:
 
 env:
   APP_NAME: "springbootrest"
-  IMAGE_NAME: "localhost/springbootrest"
+  IMAGE_NAME: "ghcr.io/nachikul/springbootrest:latest"
   CHART_PATH: "./helm/springbootrest" # Relative path to the local Helm chart
 
 jobs:
@@ -45,6 +45,7 @@ jobs:
       run: |
         echo "Building Docker image and loading it into Minikube..."
         docker build -t ${IMAGE_NAME}:${{ github.event.inputs.IMAGE_TAG || 'latest' }} .
+        docker tag ${IMAGE_NAME}:${{ github.event.inputs.IMAGE_TAG || 'latest' }} ghcr.io/nachikul/${IMAGE_NAME}:${{ github.event.inputs.IMAGE_TAG || 'latest' }}
         minikube image load ${IMAGE_NAME}:${{ github.event.inputs.IMAGE_TAG || 'latest' }}
 
     - name: Run mysql deployment
