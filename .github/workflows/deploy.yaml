@@ -36,7 +36,7 @@ jobs:
       uses: docker/setup-buildx-action@v2
 
     - name: Set up Minikube
-      uses: manusa/actions-setup-minikube@v1
+      uses: manusa/actions-setup-minikube@v2.13.0
       with:
         minikube-version: 'latest'
         kubernetes-version: 'v1.27.3'
@@ -46,6 +46,12 @@ jobs:
         echo "Building Docker image and loading it into Minikube..."
         docker build -t ${IMAGE_NAME}:${{ github.event.inputs.IMAGE_TAG || 'latest' }} .
         minikube image load ${IMAGE_NAME}:${{ github.event.inputs.IMAGE_TAG || 'latest' }}
+
+    - name: Run mysql deployment
+      run: |
+        cd mysql-local-k8s
+        docker pull mysql:8.0
+        bash deploy-mysql-k8s.sh
 
     - name: Helm Uninstall (Optional Cleanup)
       run: |
