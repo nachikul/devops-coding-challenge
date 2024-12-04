@@ -46,6 +46,10 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
+    - name: Log in to Docker Hub
+      run: |
+        echo "Some tests"
+
     - name: Docker Build & Load to Minikube
       run: |
         echo "Building Docker image and loading it into Minikube..."
