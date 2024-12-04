@@ -52,7 +52,7 @@ jobs:
         terraform_version: 1.5.6
 
     - name: Set up Minikube
-      uses: manusa/actions-setup-minikube@v2
+      uses: manusa/actions-setup-minikube@v1
       with:
         minikube-version: 'latest'
         kubernetes-version: 'v1.27.3'
