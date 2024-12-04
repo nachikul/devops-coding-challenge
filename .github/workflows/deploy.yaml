@@ -70,7 +70,6 @@ jobs:
         --docker-username=nachikul \
         --docker-password=${{ secrets.ACCESS_TOKEN }} \
         --docker-email=nachikul1993@gmail.com
-        minikube image load ${IMAGE_NAME}:${{ github.event.inputs.IMAGE_TAG || 'latest' }}
 
     - name: Run mysql deployment
       run: |
