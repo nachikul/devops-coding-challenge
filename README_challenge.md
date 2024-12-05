@@ -41,14 +41,19 @@ curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 
 docker build -t springbootrest:latest .
 docker tag springbootrest:latest ghcr.io/nachikul/springbootrest:latest
+docker push ghcr.io/nachikul/springbootrest:latest
 
 ### Save the image
 
 docker save springbootrest:latest -o springbootrest.tar
 
+Only if you are facing issues pulling the image
+
 ### To solve the localhost repository error
 
 minikube image load springbootrest.tar
+
+Only if you are facing issues pulling the image
 
 ### Run a local mysql server
 
@@ -60,8 +65,8 @@ bash deploy-mysql-k8s.sh
 
 cd terraform
 terraform init
-terraform plan -var name=springbootrest -var image=springbootrest -var kubeconfig_path=~/.kube/config
-terraform apply -var name=springbootrest -var image=springbootrest -var kubeconfig_path=~/.kube/config
+terraform plan ~var name=springbootrest ~var image=springbootrest ~var kubeconfig_path=~/.kube/config
+terraform apply ~var name=springbootrest ~var image=springbootrest ~var kubeconfig_path=~/.kube/config
 
 ## Testing
 kubectl port-forward svc/springbootrest 8080:8080
@@ -82,5 +87,5 @@ Output -
 Greetings from Crewmeister, testuser!%
 ### Deploying using CI CD
 
-Option 1 - Run the Jenkinsfile using a local Jenkins server
-Option 2 - Run the Github actions ci-cd workflow ==> https://github.com/nachikul/devops-coding-challenge/actions/runs/12165221748/job/33928672947
+Option 1 : Run the Jenkinsfile using a local Jenkins server
+Option 2 : Run the Github actions ci-cd workflow ==> https://github.com/nachikul/devops-coding-challenge/actions/runs/12165221748/job/33928672947
