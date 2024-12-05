@@ -88,4 +88,5 @@ Greetings from Crewmeister, testuser!%
 ### Deploying using CI CD
 
 Option 1 : Run the Jenkinsfile using a local Jenkins server
+
 Option 2 : Run the Github actions ci-cd workflow ==> https://github.com/nachikul/devops-coding-challenge/actions/runs/12165221748/job/33928672947
