@@ -1,4 +1,4 @@
-# Local Kubernetes Environment with Minikube, Terraform, and Helm
+# Deploying A Springboot App in a Local Kubernetes Environment with Minikube, Terraform, and Helm
 
 This guide covers the steps to install Minikube, Terraform, and Helm, configure Docker or Podman for Minikube, load a localhost image into Minikube, set the Minikube registry search, and deploy resources using Terraform.
 
