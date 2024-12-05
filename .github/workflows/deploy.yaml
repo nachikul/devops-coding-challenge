@@ -117,7 +117,10 @@ jobs:
         echo "ALL PODS ========="
         kubectl get pods
         echo "DESCRIBE SPRINGBOOT POD =========="
+        
+        sleep 20
         kubectl describe pod $(kubectl get pods --no-headers -o custom-columns=":metadata.name" | grep ^springbootrest)
+        sleep 20
         echo "LOGS OF POD ============="
         kubectl logs $(kubectl get pods --no-headers -o custom-columns=":metadata.name" | grep ^springbootrest)
 
