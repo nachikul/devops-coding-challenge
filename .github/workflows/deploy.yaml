@@ -114,8 +114,12 @@ jobs:
 
     - name: Check pod deployment
       run: |
+        echo "ALL PODS ========="
         kubectl get pods
+        echo "DESCRIBE SPRINGBOOT POD =========="
         kubectl describe pod $(kubectl get pods --no-headers -o custom-columns=":metadata.name" | grep ^springbootrest)
+        echo "LOGS OF POD ============="
+        kubectl logs $(kubectl get pods --no-headers -o custom-columns=":metadata.name" | grep ^springbootrest)
 
     - name: Port forward Springboot Service
       run: |
