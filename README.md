@@ -59,3 +59,4 @@ Your challenge is to be able to run the code in local kubenetes via Helm chart a
 ## Note:
 
 - Accessible on local system
+- Testing branching strategy
